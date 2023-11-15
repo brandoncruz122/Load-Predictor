@@ -1,5 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QDialog, QApplication, QWidget, QLabel, QLineEdit, QVBoxLayout, QPushButton, QHBoxLayout
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import *
+
 # inputvaluesdict = {}
 
 class VariableEntryWidget(QWidget):
@@ -7,6 +10,9 @@ class VariableEntryWidget(QWidget):
         super(VariableEntryWidget, self).__init__(parent)
         self.label = QLabel(label)
         self.entry = QLineEdit()
+        # Set a fixed width for the QLineEdit widget (e.g., 100 pixels)
+        self.entry.setFixedWidth(100)
+        self.label.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         layout = QHBoxLayout()
         layout.addWidget(self.label)
         layout.addWidget(self.entry)
@@ -20,7 +26,7 @@ class VariableInputDialog(QDialog):
         for label in labels:
             variable_widget = VariableEntryWidget(label)
             self.variable_widgets.append(variable_widget)
-
+    
         self.submit_button = QPushButton("Submit")
         self.use_preset_button = QPushButton("Use Preset")
 
